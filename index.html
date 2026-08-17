@@ -23,18 +23,14 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
 .name{left:7.72%;top:92.28%;width:40.75%} .status{left:61.85%;top:87.82%;width:29.65%} .teaser{left:51.28%;top:92.28%;width:40.25%}
 .submit{position:absolute;left:14.8%;top:96.3%;width:70.4%;height:3.2%;border:0;background:transparent;cursor:pointer}
 .submit:hover{background:rgba(160,10,14,.15)}
+.submit.decline{background:rgba(55,5,7,.92);border:1px solid rgba(220,35,40,.75)}
 .no-name-wrap{position:absolute;left:7.72%;top:92.28%;width:40.75%;height:2.15%;display:none;pointer-events:auto;z-index:4}
 .no-name{width:100%;height:100%;min-height:0;padding:0 .70em;background:rgba(5,5,5,.86);border:1px solid rgba(120,91,57,.82);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.30vw,15px) Georgia,serif;outline:none}
 .confirm{display:none;position:absolute;left:12%;right:12%;top:95.4%;z-index:5;padding:.6em 1em;background:rgba(8,13,7,.97);border:1px solid #50613e;color:#dbe6cd;text-align:center;font-size:clamp(10px,1.5vw,16px);pointer-events:auto}
 .error{background:rgba(24,7,8,.97);border-color:#7c2025;color:#f2c9c9}
 @media(max-width:600px){.no-name-wrap{left:7.72%;top:92.28%;width:40.75%;height:2.15%;}.field,.no-name{font-size:9px}.confirm{left:5%;right:5%;font-size:10px}}
 
-.wall-optin{
-  position:absolute;left:7.72%;top:94.78%;width:84%;
-  display:flex;align-items:center;gap:.55em;
-  color:#d7c09d;font:clamp(9px,1.25vw,14px) Georgia,serif;
-  z-index:4;pointer-events:auto;
-}
+.wall-optin{position:absolute;left:20%;top:99.10%;width:60%;display:flex;align-items:center;justify-content:center;gap:.55em;color:#d7c09d;font:clamp(9px,1.25vw,14px) Georgia,serif;z-index:4;pointer-events:auto;text-align:center}
 .wall-optin input{accent-color:#b71f22;width:1.05em;height:1.05em}
 .wall-link-wrap{
   width:min(1024px,100vw);margin:0 auto;padding:18px 18px 34px;text-align:center;background:#050505;
@@ -45,6 +41,14 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
 }
 .wall-link:hover{border-color:#c51f20;color:#fff}
 @media(max-width:600px){.no-name-wrap{left:7.72%;top:92.28%;width:40.75%;height:2.15%;}.wall-optin{font-size:9px;top:94.70%}}
+.decline-label{
+  display:none;position:absolute;left:14.8%;top:96.3%;width:70.4%;height:3.2%;
+  align-items:center;justify-content:center;z-index:5;pointer-events:none;
+  color:#e7d1ac;font:clamp(14px,2.4vw,25px) Georgia,"Times New Roman",serif;
+  letter-spacing:.05em;text-transform:uppercase;
+  text-shadow:0 1px 1px #000;
+}
+.decline-label:before{content:"☠  SEND MY REGRETS  →"}
 </style>
 </head>
 <body>
@@ -70,6 +74,7 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
       <span>Show my RSVP on the Guest Wall</span>
     </label>
     <button class="interactive submit" id="submitBtn" aria-label="Count me among the living"></button>
+<div class="decline-label" id="declineLabel"></div>
 <div class="confirm" id="confirm"></div>
 </div>
 </div>
@@ -87,11 +92,9 @@ function setAnswer(v){
   yesBtn.classList.toggle('active',v==='yes');
   noBtn.classList.toggle('active',v==='no');
 
-  // Toggle the actual interactive field group.
   yesFields.style.display=v==='yes'?'block':'none';
   noFields.style.display=v==='no'?'block':'none';
 
-  // Hide guest count and wall opt-in on declines.
   document.querySelectorAll('.count').forEach(el=>{
     el.style.display=v==='yes'?'block':'none';
   });
@@ -99,6 +102,18 @@ function setAnswer(v){
   const wallOptin=document.querySelector('.wall-optin');
   if(wallOptin){
     wallOptin.style.display=v==='yes'?'flex':'none';
+  }
+
+  const declineLabel=document.getElementById('declineLabel');
+  if(declineLabel){
+    declineLabel.style.display=v==='no'?'flex':'none';
+  }
+
+  const submitBtn=document.getElementById('submitBtn');
+  if(submitBtn){
+    submitBtn.setAttribute('aria-label',v==='yes'?'Count me among the living':'Send my regrets');
+    submitBtn.title=v==='yes'?'Count me among the living':'Send my regrets';
+    submitBtn.classList.toggle('decline',v==='no');
   }
 
   confirmBox.style.display='none';
