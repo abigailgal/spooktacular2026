@@ -12,25 +12,25 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
 .poster{display:block;width:100%;height:auto}
 .overlay{position:absolute;inset:0;pointer-events:none}
 .interactive{pointer-events:auto}
-.yes,.no{position:absolute;top:79.10%;height:6.02%;background:transparent;border:0;cursor:pointer}
-.yes{left:8.40%;width:40.10%} .no{left:51.17%;width:40.43%}
-.yes.active,.no.active{box-shadow:inset 0 0 0 2px rgba(255,35,35,.88),inset 0 0 16px rgba(255,20,20,.22);border-radius:3px}
-.count{position:absolute;top:87.55%;height:2.62%;border:0;background:transparent;cursor:pointer}
-.c1{left:27.28%;width:6.18%} .c2{left:35.05%;width:6.63%} .c3{left:42.98%;width:6.63%} .c4{left:50.92%;width:6.38%}
-.count.active{box-shadow:inset 0 0 0 1px rgba(255,45,45,.95);border-radius:2px}
-.field{position:absolute;height:2.15%;background:rgba(5,5,5,.86);border:1px solid rgba(120,91,57,.82);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.30vw,15px) Georgia,serif;padding:0 .70em;outline:none}
+.yes,.no{position:absolute;top:79.42%;height:5.55%;background:transparent;border:0;cursor:pointer}
+.yes{left:9.00%;width:37.95%} .no{left:53.10%;width:37.55%}
+.yes.active,.no.active{box-shadow:inset 0 0 0 2px rgba(255,35,35,.88),inset 0 0 10px rgba(255,20,20,.16);border-radius:3px}
+.count{position:absolute;top:87.34%;height:2.28%;border:0;background:transparent;cursor:pointer}
+.c1{left:26.80%;width:5.95%} .c2{left:33.93%;width:6.10%} .c3{left:41.26%;width:6.10%} .c4{left:48.62%;width:6.05%}
+.count.active{box-shadow:inset 0 0 0 1px rgba(255,45,45,.82);border-radius:2px}
+.field{position:absolute;height:2.00%;background:rgba(5,5,5,.84);border:1px solid rgba(120,91,57,.82);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.22vw,14px) Georgia,serif;padding:0 .70em;outline:none}
 .field:focus{border-color:#d11f24;box-shadow:0 0 0 2px rgba(209,31,36,.18)}
-.name{left:7.72%;top:92.28%;width:40.75%} .status{left:61.85%;top:87.82%;width:29.65%} .teaser{left:51.28%;top:92.28%;width:40.25%}
-.submit{position:absolute;left:14.8%;top:96.05%;width:70.4%;height:3.0%;border:0;background:transparent;cursor:pointer}
+.name{left:6.35%;top:92.22%;width:40.70%} .status{left:55.85%;top:87.34%;width:36.10%} .teaser{left:55.85%;top:92.22%;width:35.95%}
+.submit{position:absolute;left:14.85%;top:96.52%;width:70.45%;height:2.75%;border:0;background:transparent;cursor:pointer}
 .submit:hover{background:rgba(160,10,14,.15)}
 .submit.decline{background:rgba(55,5,7,.92);border:1px solid rgba(220,35,40,.75)}
-.no-name-wrap{position:absolute;left:7.72%;top:92.28%;width:40.75%;height:2.15%;display:none;pointer-events:auto;z-index:4}
+.no-name-wrap{position:absolute;left:6.35%;top:92.22%;width:40.70%;height:2.00%;display:none;pointer-events:auto;z-index:4}
 .no-name{width:100%;height:100%;min-height:0;padding:0 .70em;background:rgba(5,5,5,.86);border:1px solid rgba(120,91,57,.82);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.30vw,15px) Georgia,serif;outline:none}
 .confirm{display:none;position:absolute;left:12%;right:12%;top:95.4%;z-index:5;padding:.6em 1em;background:rgba(8,13,7,.97);border:1px solid #50613e;color:#dbe6cd;text-align:center;font-size:clamp(10px,1.5vw,16px);pointer-events:auto}
 .error{background:rgba(24,7,8,.97);border-color:#7c2025;color:#f2c9c9}
-@media(max-width:600px){.no-name-wrap{left:7.72%;top:92.28%;width:40.75%;height:2.15%;}.field,.no-name{font-size:9px}.confirm{left:5%;right:5%;font-size:10px}}
+@media(max-width:600px){.no-name-wrap{left:6.35%;top:92.22%;width:40.70%;height:2.00%;}.field,.no-name{font-size:9px}.confirm{left:5%;right:5%;font-size:10px}}
 
-.wall-optin{position:absolute;left:16%;top:98.92%;width:68%;display:flex;align-items:center;justify-content:center;gap:.55em;color:#d7c09d;font:clamp(9px,1.10vw,13px) Georgia,serif;z-index:6;pointer-events:auto;text-align:center;line-height:1.1}
+.wall-optin{position:absolute;left:24%;top:99.26%;width:52%;display:flex;align-items:center;justify-content:center;gap:.55em;color:#d7c09d;font:clamp(9px,1.00vw,12px) Georgia,serif;z-index:6;pointer-events:auto;text-align:center;line-height:1.1}
 .wall-optin input{accent-color:#b71f22;width:1.05em;height:1.05em}
 .wall-link-wrap{
   width:min(1024px,100vw);margin:0 auto;padding:18px 18px 34px;text-align:center;background:#050505;
@@ -40,8 +40,8 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
   padding:12px 18px;background:#0a0a09;font:16px Georgia,serif;letter-spacing:.05em
 }
 .wall-link:hover{border-color:#c51f20;color:#fff}
-@media(max-width:600px){.no-name-wrap{left:7.72%;top:92.28%;width:40.75%;height:2.15%;}.wall-optin{left:10%;top:98.75%;width:80%;font-size:8px}}
-.decline-label{display:none;position:absolute;left:14.8%;top:95.95%;width:70.4%;height:3.0%;align-items:center;justify-content:center;z-index:5;pointer-events:none;color:#e7d1ac;font:clamp(13px,2.15vw,23px) Georgia,"Times New Roman",serif;letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 1px #000}
+@media(max-width:600px){.no-name-wrap{left:6.35%;top:92.22%;width:40.70%;height:2.00%;}.wall-optin{left:12%;top:99.12%;width:76%;font-size:8px}}
+.decline-label{display:none;position:absolute;left:14.85%;top:96.38%;width:70.45%;height:2.75%;align-items:center;justify-content:center;z-index:5;pointer-events:none;color:#e7d1ac;font:clamp(13px,2.0vw,22px) Georgia,"Times New Roman",serif;letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 1px #000}
 .decline-label:before{content:"☠  SEND MY REGRETS  →"}
 </style>
 </head>
@@ -60,7 +60,7 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
 <select class="interactive field status" id="status" aria-label="Costume status">
 <option>Top secret</option><option>Already plotting</option><option>Currently panicking</option><option>I was born ready</option>
 </select>
-<input class="interactive field teaser" id="teaser" placeholder="Give us a clue... or keep it mysterious." aria-label="Costume teaser">
+<input class="interactive field teaser" id="teaser" placeholder="Share a message, hype, or dark joke..." aria-label="Pre-party banter">
 </div>
 <div class="no-name-wrap" id="noFields"><input class="no-name" id="noName" placeholder="Your name here" aria-label="Your name"></div>
 <label class="wall-optin">
@@ -125,20 +125,22 @@ if(!name){
   return;
 }
 
-document.getElementById('postAction').value='rsvp';
-document.getElementById('postRsvp').value=answer;
-document.getElementById('postName').value=name;
-document.getElementById('postAdults').value=answer==='yes'?String(count):'0';
-document.getElementById('postCostumeStatus').value=answer==='yes'?document.getElementById('status').value:'';
-document.getElementById('postCostumeTeaser').value=answer==='yes'?document.getElementById('teaser').value.trim():'';
-document.getElementById('postShowWall').value=document.getElementById('showWall').checked?'true':'false';
-document.getElementById('postSubmittedAt').value=new Date().toISOString();
+const params=new URLSearchParams({
+  action:'rsvp',
+  rsvp:answer,
+  name:name,
+  adults:answer==='yes'?String(count):'0',
+  costumeStatus:answer==='yes'?document.getElementById('status').value:'',
+  costumeTeaser:answer==='yes'?document.getElementById('teaser').value.trim():'',
+  showWall:document.getElementById('showWall').checked?'true':'false',
+  submittedAt:new Date().toISOString()
+});
 
 submitBtn.disabled=true;
 
-// Traditional browser form POST to Apps Script.
-// This bypasses fetch/CORS and should create a doPost execution in Apps Script.
-document.getElementById('rsvpPostForm').submit();
+// Use a normal GET navigation in a hidden iframe.
+// This reliably invokes Apps Script doGet without CORS/fetch restrictions.
+document.getElementById('rsvpSink').src='https://script.google.com/macros/s/AKfycbzQN5VorwhNDyi14_OR_0DwDZ0_eVcBq7qQVMdiNcZVcuZaIC7jZ8gobf6_Q6LDjNMZ8A/exec?'+params.toString();
 
 confirmBox.className='confirm';
 confirmBox.innerHTML=answer==='yes'
@@ -151,19 +153,5 @@ setTimeout(()=>{ submitBtn.disabled=false; },1200);
 </script>
 
 <iframe name="rsvpSink" id="rsvpSink" style="display:none"></iframe>
-<form id="rsvpPostForm"
-      action="https://script.google.com/macros/s/AKfycbzQN5VorwhNDyi14_OR_0DwDZ0_eVcBq7qQVMdiNcZVcuZaIC7jZ8gobf6_Q6LDjNMZ8A/exec"
-      method="POST"
-      target="rsvpSink"
-      style="display:none">
-  <input type="hidden" name="action" id="postAction" value="rsvp">
-  <input type="hidden" name="rsvp" id="postRsvp">
-  <input type="hidden" name="name" id="postName">
-  <input type="hidden" name="adults" id="postAdults">
-  <input type="hidden" name="costumeStatus" id="postCostumeStatus">
-  <input type="hidden" name="costumeTeaser" id="postCostumeTeaser">
-  <input type="hidden" name="showWall" id="postShowWall">
-  <input type="hidden" name="submittedAt" id="postSubmittedAt">
-</form>
 
 </body></html>
