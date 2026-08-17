@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<title>Spooktacular Guest Wall</title>
+<style>
+:root{--bg:#050505;--panel:#0b0a09;--bone:#e4cfad;--muted:#a89172;--red:#c51f20;--line:#6d5235}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% 0,#1a1110 0,transparent 35rem),#050505;color:var(--bone);font-family:Georgia,"Times New Roman",serif}
+.wrap{width:min(860px,100%);margin:auto;padding:34px 16px 60px}
+.back{color:var(--muted);text-decoration:none;font-size:14px}
+.hero{text-align:center;padding:32px 8px 25px}
+.eyebrow{color:var(--red);letter-spacing:.14em;font-size:13px}
+h1{font-size:clamp(45px,10vw,76px);margin:8px 0 5px;line-height:.95}
+.sub{color:#bea989;font-size:18px}
+.divider{color:var(--red);text-align:center;margin:18px 0}
+.list{display:grid;gap:14px}
+.card{border:1px solid var(--line);background:linear-gradient(145deg,#0d0c0b,#070707);padding:20px;border-radius:3px;box-shadow:0 18px 45px rgba(0,0,0,.25)}
+.top{display:flex;justify-content:space-between;gap:14px;align-items:start}
+.name{font-size:25px} .status{color:var(--red);font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.meta{color:var(--muted);font-size:13px;margin-top:4px}
+.comment{margin:15px 0 8px;font-size:18px;line-height:1.45;color:#eadbbf}
+.replies{margin-top:15px;padding-top:12px;border-top:1px solid #30271c}
+.reply{padding:8px 0;color:#cab796;font-size:15px}
+.reply strong{color:#e7d2b0}
+.reply-form{display:grid;grid-template-columns:1fr 2fr auto;gap:8px;margin-top:12px}
+input{background:#070707;border:1px solid #54412c;color:#e6d1af;padding:10px 11px;font:14px Georgia,serif}
+button{background:#721014;border:1px solid #b52326;color:#ead6b4;padding:10px 13px;font:14px Georgia,serif;cursor:pointer}
+.empty,.loading,.error{text-align:center;color:var(--muted);padding:40px 12px;border:1px solid #3b2e20;background:#090909}
+@media(max-width:620px){.reply-form{grid-template-columns:1fr}.top{display:block}.status{margin-top:7px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Back to invitation</a>
+<section class="hero">
+  <div class="eyebrow">ABBEY &amp; BOB'S ANNUAL SPOOKTACULAR</div>
+  <h1>Guest Wall</h1>
+  <div class="sub">See who’s brave enough to enter — and leave them a reply.</div>
+  <div class="divider">—— ☠ ——</div>
+</section>
+<div id="wall" class="list"><div class="loading">Summoning the guest list…</div></div>
+</div>
+
+<script>
+const ENDPOINT='https://script.google.com/macros/s/AKfycbzQN5VorwhNDyi14_OR_0DwDZ0_eVcBq7qQVMdiNcZVcuZaIC7jZ8gobf6_Q6LDjNMZ8A/exec';
+const wall=document.getElementById('wall');
+
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+
+window.renderWall=function(payload){
+  if(!payload || !payload.ok){wall.innerHTML='<div class="error">The Guest Wall could not be loaded.</div>';return}
+  const items=payload.rsvps||[];
+  if(!items.length){wall.innerHTML='<div class="empty">No brave souls have posted to the wall yet.</div>';return}
+  wall.innerHTML=items.map(r=>{
+    const replies=(r.replies||[]).map(x=>`<div class="reply"><strong>${esc(x.name)}:</strong> ${esc(x.reply)}</div>`).join('');
+    const comment=r.comment?`<div class="comment">“${esc(r.comment)}”</div>`:'';
+    const meta=r.rsvp==='Yes'?`${esc(r.adults)} adult${Number(r.adults)===1?'':'s'}${r.costumeStatus?' · '+esc(r.costumeStatus):''}`:'Not attending';
+    return `<article class="card">
+      <div class="top">
+        <div><div class="name">${esc(r.name)}</div><div class="meta">${meta}</div></div>
+        <div class="status">${esc(r.rsvp)}</div>
+      </div>
+      ${comment}
+      <div class="replies">
+        ${replies || '<div class="reply">No replies yet.</div>'}
+        <form class="reply-form" onsubmit="sendReply(event,'${esc(r.id)}')">
+          <input name="name" placeholder="Your name" required>
+          <input name="reply" placeholder="Write a reply…" required>
+          <button type="submit">Reply</button>
+        </form>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function loadWall(){
+  const old=document.getElementById('wallJsonp');
+  if(old) old.remove();
+  const s=document.createElement('script');
+  s.id='wallJsonp';
+  s.src=ENDPOINT+'?action=wall&callback=renderWall&t='+Date.now();
+  s.onerror=()=>wall.innerHTML='<div class="error">The Guest Wall could not be loaded.</div>';
+  document.body.appendChild(s);
+}
+
+async function sendReply(e,rsvpId){
+  e.preventDefault();
+  const form=e.target;
+  const btn=form.querySelector('button');
+  const data=new URLSearchParams({
+    action:'reply',
+    rsvpId,
+    name:form.elements.name.value.trim(),
+    reply:form.elements.reply.value.trim()
+  });
+  btn.disabled=true;
+  try{
+    await fetch(ENDPOINT,{method:'POST',mode:'no-cors',body:data});
+    form.reset();
+    setTimeout(loadWall,700);
+  }finally{btn.disabled=false}
+}
+
+loadWall();
+</script>
+</body>
+</html>
