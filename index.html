@@ -12,26 +12,27 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
 .poster{display:block;width:100%;height:auto}
 .overlay{position:absolute;inset:0;pointer-events:none}
 .interactive{pointer-events:auto}
-.yes,.no{position:absolute;top:79.70%;height:4.92%;background:transparent;border:0;cursor:pointer}
-.yes{left:9.15%;width:36.45%} .no{left:53.45%;width:36.35%}
-.yes.active,.no.active{box-shadow:inset 0 0 0 2px rgba(255,35,35,.90),inset 0 0 7px rgba(255,20,20,.12);border-radius:2px}
-.count{position:absolute;top:87.56%;height:1.98%;border:0;background:transparent;cursor:pointer}
-.c1{left:26.55%;width:5.18%} .c2{left:33.10%;width:5.45%} .c3{left:39.85%;width:5.45%} .c4{left:46.68%;width:5.45%}
-.count.active{box-shadow:inset 0 0 0 1px rgba(255,45,45,.92);border-radius:2px}
-.field{position:absolute;height:1.92%;background:rgba(5,5,5,.84);border:1px solid rgba(120,91,57,.82);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.16vw,14px) Georgia,serif;padding:0 .62em;outline:none}
+.yes,.no{position:absolute;top:78.45%;height:5.92%;background:transparent;border:0;cursor:pointer}
+.yes{left:7.62%;width:40.82%} .no{left:51.17%;width:40.63%}
+.yes.active,.no.active{box-shadow:inset 0 0 0 2px rgba(255,35,35,.94);border-radius:2px}
+.count{position:absolute;top:87.17%;height:2.67%;border:0;background:transparent;cursor:pointer}
+.c1{left:26.56%;width:6.64%} .c2{left:34.08%;width:6.64%} .c3{left:42.09%;width:6.45%} .c4{left:49.71%;width:6.64%}
+.count.active{box-shadow:inset 0 0 0 1px rgba(255,45,45,.95);border-radius:2px}
+.field{position:absolute;height:2.05%;background:#070707;border:1px solid rgba(120,91,57,.90);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.12vw,14px) Georgia,serif;padding:0 .65em;outline:none}
 .field:focus{border-color:#d11f24;box-shadow:0 0 0 2px rgba(209,31,36,.18)}
-.name{left:6.18%;top:92.26%;width:39.85%} .status{left:54.82%;top:87.58%;width:35.10%} .teaser{left:54.82%;top:92.26%;width:35.15%}
-.submit{position:absolute;left:15.10%;top:96.72%;width:69.25%;height:2.58%;border:0;background:transparent;cursor:pointer}
+.name{left:7.52%;top:92.12%;width:40.14%} .status{left:61.33%;top:87.57%;width:30.08%} .teaser{left:50.98%;top:92.12%;width:40.14%}
+.submit{position:absolute;left:17.29%;top:96.16%;width:65.43%;height:3.32%;border:0;background:transparent;cursor:pointer}
 .submit:hover{background:rgba(160,10,14,.15)}
 .submit.decline{background:rgba(55,5,7,.92);border:1px solid rgba(220,35,40,.75)}
-.no-name-wrap{position:absolute;left:6.18%;top:92.26%;width:39.85%;height:1.92%;display:none;pointer-events:auto;z-index:4}
-.no-name{width:100%;height:100%;min-height:0;padding:0 .70em;background:rgba(5,5,5,.86);border:1px solid rgba(120,91,57,.82);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.30vw,15px) Georgia,serif;outline:none}
+.no-name-wrap{position:absolute;left:7.52%;top:92.12%;width:40.14%;height:2.05%;display:none;pointer-events:auto;z-index:4}
+.no-name{width:100%;height:100%;min-height:0;padding:0 .65em;background:#070707;border:1px solid rgba(120,91,57,.90);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.12vw,14px) Georgia,serif;outline:none}
 .confirm{display:none;position:absolute;left:12%;right:12%;top:95.4%;z-index:5;padding:.6em 1em;background:rgba(8,13,7,.97);border:1px solid #50613e;color:#dbe6cd;text-align:center;font-size:clamp(10px,1.5vw,16px);pointer-events:auto}
 .error{background:rgba(24,7,8,.97);border-color:#7c2025;color:#f2c9c9}
-@media(max-width:600px){.no-name-wrap{left:6.18%;top:92.26%;width:39.85%;height:1.92%;}.field,.no-name{font-size:8px}.confirm{left:5%;right:5%;font-size:10px}}
+@media(max-width:600px){.field,.no-name{font-size:8px}.confirm{left:5%;right:5%;font-size:10px}}
 
-.wall-optin{position:absolute;left:24%;top:99.46%;width:52%;display:flex;align-items:center;justify-content:center;gap:.50em;color:#d7c09d;font:clamp(9px,0.96vw,12px) Georgia,serif;z-index:6;pointer-events:auto;text-align:center;line-height:1.1;white-space:nowrap}
-.wall-optin input{accent-color:#b71f22;width:1.05em;height:1.05em}
+.wall-optin{position:absolute;left:36.25%;top:94.86%;width:1.55%;height:1.02%;display:block;z-index:7;pointer-events:auto;margin:0;padding:0}
+.wall-optin input{appearance:none;-webkit-appearance:none;width:100%;height:100%;margin:0;border:0;background:transparent;cursor:pointer;position:relative}.wall-optin input:checked{background:rgba(183,31,34,.92);box-shadow:inset 0 0 0 1px #e7d1ac}.wall-optin input:checked:after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font:bold 10px Arial,sans-serif}
+.wall-optin span{display:none}
 .wall-link-wrap{
   width:min(1024px,100vw);margin:0 auto;padding:18px 18px 34px;text-align:center;background:#050505;
 }
@@ -40,14 +41,14 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
   padding:12px 18px;background:#0a0a09;font:16px Georgia,serif;letter-spacing:.05em
 }
 .wall-link:hover{border-color:#c51f20;color:#fff}
-@media(max-width:600px){.no-name-wrap{left:6.18%;top:92.26%;width:39.85%;height:1.92%;}.wall-optin{left:10%;top:99.36%;width:80%;font-size:8px;white-space:normal}}
-.decline-label{display:none;position:absolute;left:15.10%;top:96.58%;width:69.25%;height:2.58%;align-items:center;justify-content:center;z-index:5;pointer-events:none;color:#e7d1ac;font:clamp(13px,1.85vw,21px) Georgia,"Times New Roman",serif;letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 1px #000}
+@media(max-width:600px){.wall-optin input:checked:after{font-size:7px}}
+.decline-label{display:none;position:absolute;left:17.29%;top:96.16%;width:65.43%;height:3.32%;align-items:center;justify-content:center;z-index:5;pointer-events:none;color:#e7d1ac;font:clamp(13px,1.75vw,20px) Georgia,"Times New Roman",serif;letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 1px #000}
 .decline-label:before{content:"☠  SEND MY REGRETS  →"}
 </style>
 </head>
 <body>
 <div class="stage">
-<img class="poster" src="spooktacular.jpg?v=20260817-1643" loading="eager" decoding="async" alt="Abbey and Bob's Annual Spooktacular invitation">
+<img class="poster" src="spooktacular.jpg?v=20260817-1718" loading="eager" decoding="async" alt="Abbey and Bob's Annual Spooktacular invitation">
 <div class="overlay">
 <button class="interactive yes active" id="yesBtn" aria-label="Hell yes, we're coming"></button>
 <button class="interactive no" id="noBtn" aria-label="Damn, we'll miss it"></button>
