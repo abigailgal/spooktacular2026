@@ -17,23 +17,23 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:#e5d0ad}
 .yes,.no{position:absolute;top:81.12%;height:5.47%;background:transparent;border:0;cursor:pointer}
 .yes{left:7.62%;width:40.72%}
 .no{left:51.37%;width:40.72%}
-.yes.active,.no.active{box-shadow:inset 0 0 0 2px rgba(255,35,35,.96);border-radius:2px}
+.yes.active,.no.active{box-shadow:inset 0 0 0 1px rgba(192,145,84,.95),inset 0 0 0 3px rgba(115,9,13,.55),0 0 10px rgba(110,0,0,.22);border-radius:2px}
 
 .count{position:absolute;top:88.74%;height:2.41%;border:0;background:transparent;cursor:pointer}
 .c1{left:26.56%;width:6.64%}
 .c2{left:34.38%;width:6.64%}
 .c3{left:42.19%;width:6.64%}
 .c4{left:50.00%;width:6.64%}
-.count.active{box-shadow:inset 0 0 0 1px rgba(255,45,45,.96);border-radius:2px}
+.count.active{box-shadow:inset 0 0 0 1px rgba(194,149,89,.95),inset 0 0 0 2px rgba(104,8,12,.50),0 0 7px rgba(100,0,0,.18);border-radius:2px}
 
-.field{position:absolute;height:2.28%;background:rgba(5,5,5,.93);border:1px solid rgba(120,91,57,.92);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.08vw,14px) Georgia,"Times New Roman",serif;padding:0 .70em;outline:none}
-.field:focus{border-color:#d11f24;box-shadow:0 0 0 2px rgba(209,31,36,.14)}
+.field{position:absolute;height:2.28%;background:rgba(5,5,5,.91);border:1px solid rgba(142,101,56,.92);color:#dcc39e;border-radius:2px;font:clamp(10px,1.06vw,14px) Georgia,"Times New Roman",serif;padding:0 .70em;outline:none}
+.field:focus{border-color:#b98952;box-shadow:0 0 0 1px rgba(126,13,17,.52),0 0 8px rgba(95,0,0,.14)}
 .name{left:7.03%;top:92.51%;width:41.41%}
 .status{left:61.04%;top:88.74%;width:31.05%}
 .teaser{left:50.78%;top:92.51%;width:41.31%}
 
 .no-name-wrap{position:absolute;left:7.03%;top:92.51%;width:41.41%;height:2.28%;display:none;pointer-events:auto;z-index:4}
-.no-name{width:100%;height:100%;min-height:0;padding:0 .70em;background:rgba(5,5,5,.92);border:1px solid rgba(120,91,57,.92);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.08vw,14px) Georgia,"Times New Roman",serif;outline:none}
+.no-name{width:100%;height:100%;min-height:0;padding:0 .70em;background:rgba(5,5,5,.91);border:1px solid rgba(142,101,56,.92);color:#dcc39e;border-radius:2px;font:clamp(10px,1.06vw,14px) Georgia,"Times New Roman",serif;outline:none}
 
 .wall-optin{position:absolute;left:36.52%;top:95.31%;width:1.56%;height:1.11%;z-index:7;pointer-events:auto;margin:0;padding:0}
 .wall-optin span{display:none}
@@ -64,7 +64,7 @@ body{min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:#e5d0ad}
 </head>
 <body>
 <div class="stage">
-  <img class="poster" src="spooktacular.jpg?v=20260911-1705" loading="eager" decoding="async" alt="Abbey and Bob's Annual Spooktacular invitation">
+  <img class="poster" src="spooktacular.jpg?v=20260911-1725" loading="eager" decoding="async" alt="Abbey and Bob's Annual Spooktacular invitation">
   <div class="overlay">
     <button class="interactive yes active" id="yesBtn" aria-label="Hell yes, we're coming"></button>
     <button class="interactive no" id="noBtn" aria-label="Damn, we'll miss it"></button>
@@ -125,19 +125,40 @@ const wallOptin=document.querySelector('.wall-optin');
 
 function setAnswer(v){
   answer=v;
+
   yesBtn.classList.toggle('active',v==='yes');
   noBtn.classList.toggle('active',v==='no');
-  yesFields.style.display=v==='yes'?'block':'none';
+
+  // Keep the shared RSVP fields mounted so Pre-Party Banter remains available
+  // even when the guest declines.
+  yesFields.style.display='block';
   noFields.style.display=v==='no'?'block':'none';
 
+  // Attendance-only controls disappear for declines.
   document.querySelectorAll('.count').forEach(el=>{
     el.style.display=v==='yes'?'block':'none';
   });
 
+  const yesName=document.getElementById('name');
+  const status=document.getElementById('status');
+  const teaser=document.getElementById('teaser');
+
+  yesName.style.display=v==='yes'?'block':'none';
+  status.style.display=v==='yes'?'block':'none';
+
+  // Banter is available for both Yes and No.
+  teaser.style.display='block';
+
+  // Guest Wall remains available for both Yes and No.
   wallOptin.style.display='block';
+
   declineLabel.style.display=v==='no'?'flex':'none';
-  submitBtn.setAttribute('aria-label',v==='yes'?'Count me among the living':'Send my regrets');
+  submitBtn.setAttribute(
+    'aria-label',
+    v==='yes'?'Count me among the living':'Send my regrets'
+  );
   submitBtn.classList.toggle('decline',v==='no');
+
   confirmBox.style.display='none';
 }
 
@@ -168,7 +189,7 @@ submitBtn.onclick=()=>{
     name:name,
     adults:answer==='yes'?String(count):'0',
     costumeStatus:answer==='yes'?document.getElementById('status').value:'',
-    costumeTeaser:answer==='yes'?document.getElementById('teaser').value.trim():'',
+    costumeTeaser:document.getElementById('teaser').value.trim(),
     showWall:document.getElementById('showWall').checked?'true':'false',
     submittedAt:new Date().toISOString()
   });
