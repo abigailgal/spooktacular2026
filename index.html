@@ -6,87 +6,127 @@
 <meta name="theme-color" content="#050505">
 <title>Abbey & Bob's Annual Spooktacular</title>
 <style>
-*{box-sizing:border-box} html,body{margin:0;background:#050505}
-body{min-height:100vh;font-family:Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:#050505}
+body{min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:#e5d0ad}
 .stage{width:min(1024px,100vw);margin:0 auto;position:relative}
 .poster{display:block;width:100%;height:auto}
 .overlay{position:absolute;inset:0;pointer-events:none}
 .interactive{pointer-events:auto}
-.yes,.no{position:absolute;top:78.45%;height:5.92%;background:transparent;border:0;cursor:pointer}
-.yes{left:7.62%;width:40.82%} .no{left:51.17%;width:40.63%}
-.yes.active,.no.active{box-shadow:inset 0 0 0 2px rgba(255,35,35,.94);border-radius:2px}
-.count{position:absolute;top:87.17%;height:2.67%;border:0;background:transparent;cursor:pointer}
-.c1{left:26.56%;width:6.64%} .c2{left:34.08%;width:6.64%} .c3{left:42.09%;width:6.45%} .c4{left:49.71%;width:6.64%}
-.count.active{box-shadow:inset 0 0 0 1px rgba(255,45,45,.95);border-radius:2px}
-.field{position:absolute;height:2.05%;background:#070707;border:1px solid rgba(120,91,57,.90);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.12vw,14px) Georgia,serif;padding:0 .65em;outline:none}
-.field:focus{border-color:#d11f24;box-shadow:0 0 0 2px rgba(209,31,36,.18)}
-.name{left:7.52%;top:92.12%;width:40.14%} .status{left:61.33%;top:87.57%;width:30.08%} .teaser{left:50.98%;top:92.12%;width:40.14%}
-.submit{position:absolute;left:17.29%;top:96.16%;width:65.43%;height:3.32%;border:0;background:transparent;cursor:pointer}
-.submit:hover{background:rgba(160,10,14,.15)}
-.submit.decline{background:rgba(55,5,7,.92);border:1px solid rgba(220,35,40,.75)}
-.no-name-wrap{position:absolute;left:7.52%;top:92.12%;width:40.14%;height:2.05%;display:none;pointer-events:auto;z-index:4}
-.no-name{width:100%;height:100%;min-height:0;padding:0 .65em;background:#070707;border:1px solid rgba(120,91,57,.90);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.12vw,14px) Georgia,serif;outline:none}
-.confirm{display:none;position:absolute;left:12%;right:12%;top:95.4%;z-index:5;padding:.6em 1em;background:rgba(8,13,7,.97);border:1px solid #50613e;color:#dbe6cd;text-align:center;font-size:clamp(10px,1.5vw,16px);pointer-events:auto}
-.error{background:rgba(24,7,8,.97);border-color:#7c2025;color:#f2c9c9}
-@media(max-width:600px){.field,.no-name{font-size:8px}.confirm{left:5%;right:5%;font-size:10px}}
 
-.wall-optin{position:absolute;left:36.25%;top:94.86%;width:1.55%;height:1.02%;display:block;z-index:7;pointer-events:auto;margin:0;padding:0}
-.wall-optin input{appearance:none;-webkit-appearance:none;width:100%;height:100%;margin:0;border:0;background:transparent;cursor:pointer;position:relative}.wall-optin input:checked{background:rgba(183,31,34,.92);box-shadow:inset 0 0 0 1px #e7d1ac}.wall-optin input:checked:after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font:bold 10px Arial,sans-serif}
+.yes,.no{position:absolute;top:78.76%;height:5.02%;background:transparent;border:0;cursor:pointer}
+.yes{left:5.70%;width:43.15%}
+.no{left:51.55%;width:42.70%}
+.yes.active,.no.active{box-shadow:inset 0 0 0 2px rgba(255,35,35,.95);border-radius:2px}
+
+.count{position:absolute;top:87.07%;height:2.42%;border:0;background:transparent;cursor:pointer}
+.c1{left:25.83%;width:6.71%}
+.c2{left:33.56%;width:6.68%}
+.c3{left:41.33%;width:6.64%}
+.c4{left:49.10%;width:6.64%}
+.count.active{box-shadow:inset 0 0 0 1px rgba(255,45,45,.95);border-radius:2px}
+
+.field{position:absolute;height:2.15%;background:rgba(5,5,5,.92);border:1px solid rgba(120,91,57,.92);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.08vw,14px) Georgia,"Times New Roman",serif;padding:0 .70em;outline:none}
+.field:focus{border-color:#d11f24;box-shadow:0 0 0 2px rgba(209,31,36,.14)}
+.name{left:5.63%;top:91.73%;width:43.14%}
+.status{left:62.52%;top:87.11%;width:31.79%}
+.teaser{left:51.07%;top:91.73%;width:43.15%}
+
+.no-name-wrap{position:absolute;left:5.63%;top:91.73%;width:43.14%;height:2.15%;display:none;pointer-events:auto;z-index:4}
+.no-name{width:100%;height:100%;min-height:0;padding:0 .70em;background:rgba(5,5,5,.92);border:1px solid rgba(120,91,57,.92);color:#e3cbaa;border-radius:3px;font:clamp(10px,1.08vw,14px) Georgia,"Times New Roman",serif;outline:none}
+
+.wall-optin{position:absolute;left:36.73%;top:94.24%;width:1.58%;height:1.05%;z-index:7;pointer-events:auto;margin:0;padding:0}
 .wall-optin span{display:none}
-.wall-link-wrap{
-  width:min(1024px,100vw);margin:0 auto;padding:18px 18px 34px;text-align:center;background:#050505;
-}
-.wall-link{
-  display:inline-block;text-decoration:none;color:#e0c7a4;border:1px solid #6d5235;
-  padding:12px 18px;background:#0a0a09;font:16px Georgia,serif;letter-spacing:.05em
-}
-.wall-link:hover{border-color:#c51f20;color:#fff}
-@media(max-width:600px){.wall-optin input:checked:after{font-size:7px}}
-.decline-label{display:none;position:absolute;left:17.29%;top:96.16%;width:65.43%;height:3.32%;align-items:center;justify-content:center;z-index:5;pointer-events:none;color:#e7d1ac;font:clamp(13px,1.75vw,20px) Georgia,"Times New Roman",serif;letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 1px #000}
+.wall-optin input{appearance:none;-webkit-appearance:none;width:100%;height:100%;margin:0;border:0;background:transparent;cursor:pointer;position:relative}
+.wall-optin input:checked{background:rgba(183,31,34,.96);box-shadow:inset 0 0 0 1px #e7d1ac}
+.wall-optin input:checked:after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font:bold 10px Arial,sans-serif}
+
+.submit{position:absolute;left:19.18%;top:95.55%;width:61.42%;height:3.17%;border:0;background:transparent;cursor:pointer}
+.submit:hover{background:rgba(160,10,14,.10)}
+.submit.decline{background:rgba(55,5,7,.92);border:1px solid rgba(220,35,40,.75)}
+
+.decline-label{display:none;position:absolute;left:19.18%;top:95.47%;width:61.42%;height:3.17%;align-items:center;justify-content:center;z-index:5;pointer-events:none;color:#e7d1ac;font:clamp(13px,1.7vw,20px) Georgia,"Times New Roman",serif;letter-spacing:.05em;text-transform:uppercase;text-shadow:0 1px 1px #000}
 .decline-label:before{content:"☠  SEND MY REGRETS  →"}
+
+.confirm{display:none;position:absolute;left:12%;right:12%;top:95.2%;z-index:8;padding:.6em 1em;background:rgba(8,13,7,.97);border:1px solid #50613e;color:#dbe6cd;text-align:center;font-size:clamp(10px,1.4vw,16px);pointer-events:auto}
+.error{background:rgba(24,7,8,.97);border-color:#7c2025;color:#f2c9c9}
+
+.wall-link-wrap{width:min(1024px,100vw);margin:0 auto;padding:18px 18px 34px;text-align:center;background:#050505}
+.wall-link{display:inline-block;text-decoration:none;color:#e0c7a4;border:1px solid #6d5235;padding:12px 18px;background:#0a0a09;font:16px Georgia,"Times New Roman",serif;letter-spacing:.05em}
+.wall-link:hover{border-color:#c51f20;color:#fff}
+
+@media(max-width:600px){
+  .field,.no-name{font-size:8px}
+  .wall-optin input:checked:after{font-size:7px}
+  .confirm{left:5%;right:5%;font-size:10px}
+}
 </style>
 </head>
 <body>
 <div class="stage">
-<img class="poster" src="spooktacular.jpg?v=20260817-1718" loading="eager" decoding="async" alt="Abbey and Bob's Annual Spooktacular invitation">
-<div class="overlay">
-<button class="interactive yes active" id="yesBtn" aria-label="Hell yes, we're coming"></button>
-<button class="interactive no" id="noBtn" aria-label="Damn, we'll miss it"></button>
-<div id="yesFields">
-<button class="interactive count c1" data-count="1" aria-label="1 adult"></button>
-<button class="interactive count c2 active" data-count="2" aria-label="2 adults"></button>
-<button class="interactive count c3" data-count="3" aria-label="3 adults"></button>
-<button class="interactive count c4" data-count="4" aria-label="4 adults"></button>
-<input class="interactive field name" id="name" placeholder="Your name here" aria-label="Your name">
-<select class="interactive field status" id="status" aria-label="Costume status">
-<option>Top secret</option><option>Already plotting</option><option>Currently panicking</option><option>I was born ready</option>
-</select>
-<input class="interactive field teaser" id="teaser" placeholder="Share a message, hype, or dark joke..." aria-label="Pre-party banter">
-</div>
-<div class="no-name-wrap" id="noFields"><input class="no-name" id="noName" placeholder="Your name here" aria-label="Your name"></div>
-<label class="wall-optin">
+  <img class="poster" src="spooktacular.jpg?v=20260911-1645" loading="eager" decoding="async" alt="Abbey and Bob's Annual Spooktacular invitation">
+  <div class="overlay">
+    <button class="interactive yes active" id="yesBtn" aria-label="Hell yes, we're coming"></button>
+    <button class="interactive no" id="noBtn" aria-label="Damn, we'll miss it"></button>
+
+    <div id="yesFields">
+      <button class="interactive count c1" data-count="1" aria-label="1 adult"></button>
+      <button class="interactive count c2 active" data-count="2" aria-label="2 adults"></button>
+      <button class="interactive count c3" data-count="3" aria-label="3 adults"></button>
+      <button class="interactive count c4" data-count="4" aria-label="4 adults"></button>
+
+      <input class="interactive field name" id="name" placeholder="Your name here" aria-label="Your name">
+
+      <select class="interactive field status" id="status" aria-label="Costume status">
+        <option>Top secret</option>
+        <option>Already plotting</option>
+        <option>Currently panicking</option>
+        <option>I was born ready</option>
+      </select>
+
+      <input class="interactive field teaser" id="teaser" placeholder="Share a message, hype, or dark joke..." aria-label="Pre-party banter">
+    </div>
+
+    <div class="no-name-wrap" id="noFields">
+      <input class="no-name" id="noName" placeholder="Your name here" aria-label="Your name">
+    </div>
+
+    <label class="wall-optin">
       <input type="checkbox" id="showWall">
       <span>Show my RSVP on the Guest Wall</span>
     </label>
+
     <button class="interactive submit" id="submitBtn" aria-label="Count me among the living"></button>
-<div class="decline-label" id="declineLabel"></div>
-<div class="confirm" id="confirm"></div>
+    <div class="decline-label" id="declineLabel"></div>
+    <div class="confirm" id="confirm"></div>
+  </div>
 </div>
-</div>
+
 <div class="wall-link-wrap">
   <a class="wall-link" href="guest-wall.html">☠ VIEW THE GUEST WALL</a>
 </div>
+
+<iframe name="rsvpSink" id="rsvpSink" style="display:none"></iframe>
+
 <script>
-const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzQN5VorwhNDyi14_OR_0DwDZ0_eVcBq7qQVMdiNcZVcuZaIC7jZ8gobf6_Q6LDjNMZ8A/exec';
-let answer='yes',count=2;
-const yesBtn=document.getElementById('yesBtn'),noBtn=document.getElementById('noBtn'),
-yesFields=document.getElementById('yesFields'),noFields=document.getElementById('noFields'),
-confirmBox=document.getElementById('confirm');
+const RSVP_ENDPOINT='https://script.google.com/macros/s/AKfycbzQN5VorwhNDyi14_OR_0DwDZ0_eVcBq7qQVMdiNcZVcuZaIC7jZ8gobf6_Q6LDjNMZ8A/exec';
+
+let answer='yes';
+let count=2;
+
+const yesBtn=document.getElementById('yesBtn');
+const noBtn=document.getElementById('noBtn');
+const yesFields=document.getElementById('yesFields');
+const noFields=document.getElementById('noFields');
+const confirmBox=document.getElementById('confirm');
+const submitBtn=document.getElementById('submitBtn');
+const declineLabel=document.getElementById('declineLabel');
+const wallOptin=document.querySelector('.wall-optin');
+
 function setAnswer(v){
   answer=v;
   yesBtn.classList.toggle('active',v==='yes');
   noBtn.classList.toggle('active',v==='no');
-
   yesFields.style.display=v==='yes'?'block':'none';
   noFields.style.display=v==='no'?'block':'none';
 
@@ -94,67 +134,58 @@ function setAnswer(v){
     el.style.display=v==='yes'?'block':'none';
   });
 
-  document.querySelectorAll('.wall-optin').forEach(el=>{ el.style.display=v==='yes'?'flex':'none'; });
-
-  const declineLabel=document.getElementById('declineLabel');
-  if(declineLabel){
-    declineLabel.style.display=v==='no'?'flex':'none';
-  }
-
-  const submitBtn=document.getElementById('submitBtn');
-  if(submitBtn){
-    submitBtn.setAttribute('aria-label',v==='yes'?'Count me among the living':'Send my regrets');
-    submitBtn.title=v==='yes'?'Count me among the living':'Send my regrets';
-    submitBtn.classList.toggle('decline',v==='no');
-  }
-
+  wallOptin.style.display=v==='yes'?'block':'none';
+  declineLabel.style.display=v==='no'?'flex':'none';
+  submitBtn.setAttribute('aria-label',v==='yes'?'Count me among the living':'Send my regrets');
+  submitBtn.classList.toggle('decline',v==='no');
   confirmBox.style.display='none';
 }
-yesBtn.onclick=()=>setAnswer('yes'); noBtn.onclick=()=>setAnswer('no');
-document.querySelectorAll('.count').forEach(b=>b.onclick=()=>{document.querySelectorAll('.count').forEach(x=>x.classList.remove('active'));b.classList.add('active');count=Number(b.dataset.count)});
-document.getElementById('submitBtn').onclick=()=>{
-const submitBtn=document.getElementById('submitBtn');
-const name=(answer==='yes'?document.getElementById('name'):document.getElementById('noName')).value.trim();
 
-if(!name){
-  confirmBox.className='confirm error';
-  confirmBox.textContent='The spirits need your name first.';
-  confirmBox.style.display='block';
-  return;
-}
+yesBtn.onclick=()=>setAnswer('yes');
+noBtn.onclick=()=>setAnswer('no');
 
-const params=new URLSearchParams({
-  action:'rsvp',
-  rsvp:answer,
-  name:name,
-  adults:answer==='yes'?String(count):'0',
-  costumeStatus:answer==='yes'?document.getElementById('status').value:'',
-  costumeTeaser:answer==='yes'?document.getElementById('teaser').value.trim():'',
-  showWall:document.getElementById('showWall').checked?'true':'false',
-  submittedAt:new Date().toISOString()
+document.querySelectorAll('.count').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.count').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    count=Number(btn.dataset.count);
+  };
 });
 
-submitBtn.disabled=true;
+submitBtn.onclick=()=>{
+  const name=(answer==='yes'?document.getElementById('name'):document.getElementById('noName')).value.trim();
 
-// Use a normal GET navigation in a hidden iframe.
-// This reliably invokes Apps Script doGet without CORS/fetch restrictions.
-document.getElementById('rsvpSink').src='https://script.google.com/macros/s/AKfycbzQN5VorwhNDyi14_OR_0DwDZ0_eVcBq7qQVMdiNcZVcuZaIC7jZ8gobf6_Q6LDjNMZ8A/exec?'+params.toString();
+  if(!name){
+    confirmBox.className='confirm error';
+    confirmBox.textContent='The spirits need your name first.';
+    confirmBox.style.display='block';
+    return;
+  }
 
-confirmBox.className='confirm';
-confirmBox.innerHTML=answer==='yes'
-  ?'<strong>You’re among the living, '+name.replace(/[<>&]/g,'')+'.</strong><br>We’ll see you at the haunt. ☠'
-  :'<strong>We’ll miss you, '+name.replace(/[<>&]/g,'')+'.</strong><br>The spirits have been notified.';
-confirmBox.style.display='block';
+  const params=new URLSearchParams({
+    action:'rsvp',
+    rsvp:answer,
+    name:name,
+    adults:answer==='yes'?String(count):'0',
+    costumeStatus:answer==='yes'?document.getElementById('status').value:'',
+    costumeTeaser:answer==='yes'?document.getElementById('teaser').value.trim():'',
+    showWall:document.getElementById('showWall').checked?'true':'false',
+    submittedAt:new Date().toISOString()
+  });
 
-setTimeout(()=>{ submitBtn.disabled=false; },1200);
+  submitBtn.disabled=true;
+  document.getElementById('rsvpSink').src=RSVP_ENDPOINT+'?'+params.toString();
+
+  confirmBox.className='confirm';
+  confirmBox.innerHTML=answer==='yes'
+    ?'<strong>You’re among the living, '+name.replace(/[<>&]/g,'')+'.</strong><br>We’ll see you at the haunt. ☠'
+    :'<strong>We’ll miss you, '+name.replace(/[<>&]/g,'')+'.</strong><br>The spirits have been notified.';
+  confirmBox.style.display='block';
+
+  setTimeout(()=>{submitBtn.disabled=false;},1200);
 };
 
-// Safety cleanup: if old cached markup ever causes duplicate Guest Wall opt-ins,
-// keep only the first one.
-document.querySelectorAll('.wall-optin').forEach((el,i)=>{ if(i>0) el.remove(); });
-
+document.querySelectorAll('.wall-optin').forEach((el,i)=>{if(i>0) el.remove();});
 </script>
-
-<iframe name="rsvpSink" id="rsvpSink" style="display:none"></iframe>
-
-</body></html>
+</body>
+</html>
